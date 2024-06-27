@@ -24,12 +24,12 @@ import { redisStore } from 'cache-manager-redis-yet';
       useClass: PostgresConfigService,
       inject: [PostgresConfigService],
     }),
-      // CacheModule.registerAsync({
-      //   useFactory: async () => ({
-      //     store: await redisStore({ ttl: 10 * 1000 }),
-      //   }),
-      //   isGlobal: true,
-      // }),
+      CacheModule.registerAsync({
+        useFactory: async () => ({
+          store: await redisStore({ ttl: 10 * 1000 }),
+        }),
+        isGlobal: true,
+      }),
       AuthenticationModule,
   ],
   providers: [
