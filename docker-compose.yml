@@ -13,7 +13,7 @@ services:
     ports:
       - "5433:5432"
     networks:
-      - postgres
+      - backend
     restart: unless-stopped
 
   pgadmin:
@@ -26,20 +26,38 @@ services:
     depends_on:
       - postgres
     networks:
-      - postgres
+      - backend
 
-  redis:
-    container_name: redis-cache
-    image: redis:7.0-alpine
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      SEGREDO_JWT: ${SEGREDO_JWT}
+      SAL_SENHA: ${SAL_SENHA}
     ports:
-      - 6379:6379
-    volumes:
-      - redis:/data
+      - "8000:8000"
+    networks:
+      - backend
+  
+  # redis:
+  #  container_name: redis-cache
+  #  image: redis:7.0-alpine
+  #  ports:
+  #    - "6379:6379"
+  #  volumes:
+  #    - redis:/data
+  #  networks:
+  #    - backend
 
 networks:
-  postgres:
+  backend:
     driver: bridge
 
 volumes:
-    postgres:
-    redis:
+  postgres:

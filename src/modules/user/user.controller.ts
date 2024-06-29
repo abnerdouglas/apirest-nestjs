@@ -14,6 +14,7 @@ import { UserService } from './user.service';
 import { UpdateUserDTO } from './dto/UpdateUser.dto';
 import { HashPasswordPipe } from 'src/resources/pipes/hashPassword';
 import { AuthenticationGuard } from '../auth/authentication.guard';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @UseGuards(AuthenticationGuard)
 @Controller('/users')
@@ -37,6 +38,9 @@ export class UserController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'List all users' })
+  @ApiResponse({ status: 200, description: 'Return all users.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   async listUsers() {
     const usersSaved = await this.userService.listUsers();
 
