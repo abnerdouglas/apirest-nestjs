@@ -14,14 +14,18 @@ import { UserService } from './user.service';
 import { UpdateUserDTO } from './dto/UpdateUser.dto';
 import { HashPasswordPipe } from 'src/resources/pipes/hashPassword';
 import { AuthenticationGuard } from '../auth/authentication.guard';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @UseGuards(AuthenticationGuard)
 @Controller('/users')
+@ApiTags('users')
+@ApiBearerAuth()
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
+  @ApiOperation({ summary:'Create user' })
+  @ApiResponse({ status: 201, description: 'User created sucessfully.' })
   async createUser(
     @Body() { password, ...dataOfUser }: CreateUserDTO,
     @Body('password', HashPasswordPipe) hashedPassword: string,
@@ -51,6 +55,7 @@ export class UserController {
   }
 
   @Put('/:id')
+  @ApiOperation({ summary: 'Update user' })
   async updateUser(@Param('id') id: string, @Body() newData: UpdateUserDTO) {
     const userUpdated = await this.userService.updateUser(id, newData);
 
@@ -61,6 +66,7 @@ export class UserController {
   }
 
   @Delete('/:id')
+  @ApiOperation({ summary:'Delete user' })
   async removeUser(@Param('id') id: string) {
     const userRemoved = await this.userService.deleteUser(id);
 

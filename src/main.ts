@@ -13,12 +13,16 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  app.enableCors({
+		origin: '*',
+	});
 
   const config = new DocumentBuilder()
     .setTitle('Nest js API')
     .setDescription('API Rest Documentation')
     .setVersion('1.0')
     .addTag('users')
+    .addServer('http://localhost:8000', 'Development Server')
     .addBearerAuth()
     .setLicense('MIT License', 'https://opensource.org/licenses/MIT')
     .build();
