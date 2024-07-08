@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Redirect, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';

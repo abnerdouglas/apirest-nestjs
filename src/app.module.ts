@@ -11,8 +11,8 @@ import { UserModule } from './modules/user/user.module';
 import { FilterGlobalException } from './resources/filters/filter-global-exception';
 import { LoggerGlobalInterceptor } from './resources/interceptors/logger-global.interceptors';
 import { AuthenticationModule } from './modules/auth/authentication.module';
-import { CacheModule } from '@nestjs/cache-manager';
-import { redisStore } from 'cache-manager-redis-yet';
+import { RedirectController } from './redirect.controller';
+
 
 @Module({
   imports: [
@@ -32,6 +32,7 @@ import { redisStore } from 'cache-manager-redis-yet';
       // }),
       AuthenticationModule,
   ],
+  controllers: [RedirectController],
   providers: [
     {
       provide: APP_FILTER,
