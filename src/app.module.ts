@@ -11,6 +11,7 @@ import { UserModule } from "./modules/user/user.module";
 import { FilterGlobalException } from "./resources/filters/filter-global-exception";
 import { LoggerGlobalInterceptor } from "./resources/interceptors/logger-global.interceptors";
 import { AuthenticationModule } from "./modules/auth/authentication.module";
+import { RedirectController } from "./redirect.controller";
 
 @Module({
   imports: [
