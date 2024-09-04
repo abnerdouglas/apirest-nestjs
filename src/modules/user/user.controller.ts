@@ -20,7 +20,6 @@ import {
   ApiResponse,
   ApiTags,
 } from "@nestjs/swagger";
-import e from "express";
 
 @UseGuards(AuthenticationGuard)
 @Controller("/users")
