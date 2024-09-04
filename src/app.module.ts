@@ -30,6 +30,7 @@ import { AuthenticationModule } from "./modules/auth/authentication.module";
     // }),
     AuthenticationModule,
   ],
+  controllers: [RedirectController],
   providers: [
     {
       provide: APP_FILTER,

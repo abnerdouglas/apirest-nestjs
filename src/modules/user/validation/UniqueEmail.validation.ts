@@ -30,9 +30,9 @@ export class UniqueEmailValidator implements ValidatorConstraintInterface {
 }
 
 export const UniqueEmail = (validationOptions: ValidationOptions) => {
-  return (objeto: object, property: string) => {
+  return (object: object, property: string) => {
     registerDecorator({
-      target: objeto.constructor,
+      target: object.constructor,
       propertyName: property,
       options: validationOptions,
       constraints: [],
