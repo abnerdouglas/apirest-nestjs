@@ -1,9 +1,9 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty } from "class-validator";
 
 export class AuthDTO {
-  @IsEmail(undefined, { message: 'O e-mail informado é inválido' })
+  @IsEmail(undefined, { message: "O e-mail informado é inválido" })
   email: string;
 
-  @IsNotEmpty({ message: 'A senha não pode estar vazia' })
+  @IsNotEmpty({ message: "A senha não pode estar vazia" })
   password: string;
 }
